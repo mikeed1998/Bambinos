@@ -29,13 +29,13 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         // Schema::defaultStringLength(125);
-				$configs = Configuracion::find(1);
-                $product = Producto::where("activo",1)->orderBy("orden","asc")->get(["id","nombre"]);
+				// $configs = Configuracion::find(1);
+                // $product = Producto::where("activo",1)->orderBy("orden","asc")->get(["id","nombre"]);
 
-				View::share([
-					'config' => $configs,
-                    'productos_menu' => $product,
-				]);
+				// View::share([
+				// 	'config' => $configs,
+                //     'productos_menu' => $product,
+				// ]);
 
 
     }
