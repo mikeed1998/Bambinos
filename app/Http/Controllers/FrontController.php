@@ -36,22 +36,11 @@ class FrontController extends Controller
 	 */
 		public function index(){
 			$elements = Elemento::where('seccion',1)->get();
-			$servicios = services::all();
-			$categoria = Categoria::all();
-			$productos = Producto::where('inicio',1)->get();
-			$carrusel = Carrusel::get();
-			foreach($productos as $p){
-				$prod_photos = ProductosPhoto::where('producto',$p->id)->get()->first();
-				if(!empty($prod_photos)){
-					$p->photo = $prod_photos->image;
-				}
-				
-			}
 			$user=null;
 			if(auth()->check()){
 				$user = auth()->user();
 			}
-			return view('front.index',compact('elements','servicios','categoria','productos','user', 'carrusel'));
+			return view('front.index',compact('elements','user'));
 	}
 
 	public function perfil(Request $request, $id){

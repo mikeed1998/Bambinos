@@ -34,9 +34,8 @@ class SeccionController extends Controller
     public function index() {
 
 			$seccion = Seccion::all();
-            
 			foreach ($seccion as $sec) {
-				$sec->elements = $sec->elementos()->count();  
+                    $sec->elements = $sec->elementos()->count();  
 			}
           
 			return view('configs.secciones.index',compact('seccion'));
@@ -207,29 +206,15 @@ class SeccionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($seccion) {
-            $carrusel = Carrusel::get();
             $seccion_nom = $seccion;
+    
 			$seccion = Seccion::where('slug',$seccion)->first();
-            $blogs = services::all();
+            
 			$elements = $seccion->elementos()->get();
             $ruta = 'configs.secciones.'.$seccion->seccion;
 
-             
-            if($seccion_nom == 'products'){
-                $productos = Producto::paginate(8);
-                $categorias = Categoria::paginate(4);
-                foreach($productos as $p){
-                    $prod_photos = ProductosPhoto::where('producto',$p->id)->get()->first();
-                    if(!empty($prod_photos)){
-                        $p->photo = $prod_photos->image;
-                    }
-                    
-                }
-                return view($ruta,compact('elements','seccion','productos','categorias'));
-            }
             
-
-			return view($ruta,compact('elements','seccion','blogs', 'carrusel'));
+			return view($ruta,compact('elements','seccion'));
     }
 
 

@@ -307,7 +307,7 @@
     <div class="col-12 d-flex justify-content-center align-items-center" style="height: 500px; background-color:; position: relative;">
             @while ($cartas <= 3)
             <div class="col-3 px-2">
-        <a href="{{route('front.oferta')}}">
+  
                 <div class="col-12 d-flex align-items-center card pt-3 px-3 cartas" style="">
                     <div style="width: 100%; height: 19rem; background-repeat: no-repeat; background-size: cover; background-image: url({{asset('img/design/Sektor/home/imagen02.png')}})">
                     {{-- <img src="{{asset('img/design/Sektor/home/imagen02.png')}}" alt=""> --}}
@@ -316,7 +316,7 @@
                     <div class="col-4 border border-danger border-2 my-3" style="border-radius: 23px"></div>
                     <div class="col-12" style="font-weight: bold; text-align: center; font-size: 1.5rem">CAMINO AL ITESO</div>
                 </div>
-            </a>
+
             </div>
             @php
             $cartas++; 

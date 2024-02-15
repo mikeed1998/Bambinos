@@ -109,6 +109,10 @@ Route::prefix('admin')->group(function(){
 		});
 
 	});
+
+	Route::prefix('clientes')->name('clientes.')->group(function () {
+		Route::get('show','UserController@show')->name('show');
+	});
 });
 
 // rutas funciones generales

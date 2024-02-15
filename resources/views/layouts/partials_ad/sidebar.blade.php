@@ -25,12 +25,7 @@
 							<li class="p-2">
 								<a href="{{ route('config.index') }}" class="collapsible-header waves-effect {{ (request()->is('admin/config')) ? 'active' : '' }}" style="border-radius: 16px; text-decoration: none; "><i class="w-fa fas fa-cog"></i>Inicio config</a>
 							</li>
-							<li class="p-2">
-								<a href="{{ route('clientes.show')}}" style="border-radius: 16px; text-decoration: none; " ><i class="fa-solid fa-users me-3"></i>Clientes</a>
-							</li>
-							<li class="p-2">
-								<a href="{{ route('pedidios.show')}}" class="collapsible-header waves-effect " style="border-radius: 16px; text-decoration: none; " ><i class="fa-solid fa-dolly  me-3"></i>Vacantes</a>
-							</li>
+
 							{{-- <li class="p-2">
 								<a href="{{ route('clientes.index') }}" class="collapsible-header waves-effect"><i class="fas fa-users"></i></i>Clientes</a>
 							</li> --}}
