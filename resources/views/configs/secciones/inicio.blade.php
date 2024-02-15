@@ -259,6 +259,7 @@
 							});
 							///////////////////// Editar campos imegn categoria ////////////////////
 						</script>
+                        yes
 				</div>
     --}}
 @section('content')
