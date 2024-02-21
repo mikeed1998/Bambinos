@@ -45,7 +45,7 @@ class FrontController extends Controller
 				if(!empty($prod_photos)){
 					$p->photo = $prod_photos->image;
 				}
-				
+
 			}
 			$user=null;
 			if(auth()->check()){
@@ -58,11 +58,11 @@ class FrontController extends Controller
 		$user=null;
 			if(auth()->check()){
 				$user = auth()->user();
-			} 
+			}
 		$producto = Producto::find($id);
 		$servicios1 = services::where('icono', $id)->where('descripcion', 7)->get();
 		$servicios2 = services::where('icono', $id)->where('descripcion', 8)->get();
-		
+
 		return view('front.perfil-vacante', compact('user', 'producto', 'servicios1', 'servicios2'));
 	}
 
@@ -97,7 +97,7 @@ class FrontController extends Controller
 	// 					$produsctos = Producto::paginate(20);
 	// 				}
 	// 			}
-				
+
 	// 		}
 	// 	}
 
@@ -105,7 +105,7 @@ class FrontController extends Controller
 	// }
 
 
-	
+
 
 	public function producto($id){
 		$producto = Producto::where('id', $id)->first();
@@ -143,7 +143,7 @@ class FrontController extends Controller
 			'correo' => $request->correo,
 			'mensaje' => $request->mensaje,
 			'asunto' => 'Formulario de contacto',
-			'hoy' => Carbon::now()->format('d-m-Y') 
+			'hoy' => Carbon::now()->format('d-m-Y')
 		);
 		$html = view('front.mailcontact',compact('data'));
 		$config = Configuracion::first();
