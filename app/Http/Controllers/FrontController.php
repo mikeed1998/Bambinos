@@ -35,95 +35,13 @@ class FrontController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 		public function index(){
-			$elements = Elemento::where('seccion',1)->get();
-			$servicios = services::all();
-			$categoria = Categoria::all();
-			$productos = Producto::where('inicio',1)->get();
-			$carrusel = Carrusel::get();
-			foreach($productos as $p){
-				$prod_photos = ProductosPhoto::where('producto',$p->id)->get()->first();
-				if(!empty($prod_photos)){
-					$p->photo = $prod_photos->image;
-				}
-				
-			}
 			$user=null;
 			if(auth()->check()){
 				$user = auth()->user();
 			}
-			return view('front.index',compact('elements','servicios','categoria','productos','user', 'carrusel'));
+			return view('front.index',compact('user'));
 	}
-
-	public function perfil(Request $request, $id){
-		$user=null;
-			if(auth()->check()){
-				$user = auth()->user();
-			} 
-		$producto = Producto::find($id);
-		$servicios1 = services::where('icono', $id)->where('descripcion', 7)->get();
-		$servicios2 = services::where('icono', $id)->where('descripcion', 8)->get();
-		
-		return view('front.perfil-vacante', compact('user', 'producto', 'servicios1', 'servicios2'));
-	}
-
-	// public function shop(Request $request){
-	// 	$user=null;
-	// 	if(auth()->check()){
-	// 		$user = auth()->user();
-	// 	}
-	// 	// dd($request->busqueda_txt, $request->mi_lista);
-	// 	$categoria = Categoria::get();
-	// 	$produsctos = Producto::paginate(20);
-	// 	$cate_buscar = $request->mi_lista;
-	// 	$txt_buscar = $request->busqueda_txt;
-
-	// 	if(!empty($cate_buscar)){
-	// 		if($cate_buscar != "todos_los_productos"){
-	// 			$categoria_buscada = Categoria::find($cate_buscar);
-	// 			$cate_id = $categoria_buscada->id;
-	// 			$produsctos = DB::table('productos')
-	// 			->select('id', 'nombre', 'descripcion', 'categoria', 'portada', 'precio', 'color', 'inicio')
-	// 			->where('categoria','LIKE','%'.$cate_id.'%')
-	// 			->paginate(10000);
-	// 		}else{
-	// 			if(!empty($txt_buscar)){
-	// 				$produsctos = DB::table('productos')
-	// 				->select('id', 'nombre', 'descripcion', 'categoria', 'portada', 'precio', 'color', 'inicio')
-	// 				->where('nombre','LIKE','%' . $txt_buscar . '%')
-	// 				->orwhere('descripcion', 'LIKE', '%' . $txt_buscar . '%')
-	// 				->paginate(10000);
-
-	// 				if($produsctos->count() == 0){
-	// 					$produsctos = Producto::paginate(20);
-	// 				}
-	// 			}
-				
-	// 		}
-	// 	}
-
-	// 	return view('front.shop',compact('user', 'categoria', 'produsctos'));
-	// }
-
-
 	
-
-	public function producto($id){
-		$producto = Producto::where('id', $id)->first();
-		$user=null;
-		if(auth()->check()){
-			$user = auth()->user();
-		}
-		return view('front.producto', compact('user', 'producto'));
-	}
-
-
-	public function contact(){
-		$user=null;
-		if(auth()->check()){
-			$user = auth()->user();
-		}
-		return view('front.contacto',compact('user'));
-	}
 
 	// correo de contacto normal
 	public function mailcontact(Request $request){
