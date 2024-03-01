@@ -461,7 +461,7 @@
             </div>
         </div>
         <div class="col-3 border-end border-3 border-white d-flex justify-content-center align-items-center compra-segura px-5" style="height: 100%;">
-            Compra Segura.
+            Compra Segura. 
         </div>
         <div class="col-6 px-3">
             <div class="col-12 d-flex flex-row justify-content-center align-items-center" style="border-radius: 23px; background-color: #ffffff; height: 100%;">
@@ -582,10 +582,11 @@
 
 
     {{-- -------------------------------------------- Menu fixed -------------------------------------------- --}}
-    <div class="vertical-text d-flex justify-content-center align-items-center" style="">
+    <a href="{{route('front.catalogo')}}">
+    <div class="vertical-text d-flex justify-content-center align-items-center " style="">
     <p class="texto-menu">catálogo online</p>
     </div>
-
+    </a>
 </div>  
 
 

@@ -42,6 +42,17 @@ class FrontController extends Controller
 			return view('front.index',compact('user'));
 	}
 	
+	public function catalogo(){
+		return view('front.catalogo');
+	}
+
+	public function brincolin(){
+		return	 view('front.brincolin');
+	}
+
+	public function nosotros(){
+		return view('front.nosotros');
+	}
 
 	// correo de contacto normal
 	public function mailcontact(Request $request){

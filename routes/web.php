@@ -20,6 +20,9 @@ use Carbon\Carbon;
 Route::name('front.')->group(function(){
 
 	Route::get('/', 'FrontController@index')->name('index');
+	Route::get('/catalogo', 'FrontController@catalogo')->name('catalogo');
+	Route::get('brincolin', 'FrontController@brincolin')->name('brincolin');
+	Route::get('nosotros', 'FrontController@nosotros')->name('nosotros');
 });
 
 // rutas al admin
