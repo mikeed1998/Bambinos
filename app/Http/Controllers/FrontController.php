@@ -26,13 +26,22 @@ class FrontController extends Controller
 
     public function aboutus()
     {
-        return view('front.index');
+        return view('front.aboutus');
     }
 
     public function contact()
     {
-        return view('front.index');
+        return view('front.contact');
     }
+
+    public function catalogo(){
+		return view('front.catalogo');
+	}
+
+    public function brincolin(){
+		return	 view('front.brincolin');
+	}
+
 
     public function tienda() {
         $categorias = Categoria::all();

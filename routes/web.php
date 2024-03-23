@@ -18,6 +18,8 @@
 
     // Rutas del front general / Sin restricciones de middleware
     Route::get('/', 'FrontController@home')->name('front.home');
+    Route::get('/catalogo', 'FrontController@catalogo')->name('catalogo');
+    Route::get('brincolin', 'FrontController@brincolin')->name('brincolin');
     Route::get('/nosotros', 'FrontController@aboutus')->name('front.aboutus');
     Route::get('/contacto', 'FrontController@contact')->name('front.contact');
     Route::get('/tienda', 'FrontController@tienda')->name('front.tienda');
@@ -78,6 +80,14 @@
         Route::prefix('secciones')->name('seccion.')->group(function(){
             Route::get('/','SeccionController@index')->name('index');
 			Route::get('/{slug}','SeccionController@show')->name('show');
+            Route::post('/guardarTarjeta', 'SeccionController@guardarTarjeta')->name('guardarTarjeta');
+            Route::post('/deletetarjeta', 'SeccionController@deletetarjeta')->name('deletetarjeta');
+            Route::post('/addcarrousel', 'SeccionController@addcarrousel')->name('addcarrousel');
+            Route::post('/deleteslider', 'SeccionController@deleteslider')->name('deleteslider');
+            Route::post('/cambiarImagen', 'SeccionController@cambiarImagen')->name('cambiarImagen');
+            Route::post('/textglobalseccion', 'SeccionController@textglobalseccion')->name('textglobalseccion');
+            Route::post('/guardarSocio', 'SeccionController@guardarSocio')->name('guardarSocio');
+            Route::post('/deletesocio', 'SeccionController@deletesocio')->name('deletesocio');
         });
     });
 

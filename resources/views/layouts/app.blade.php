@@ -1,3 +1,65 @@
+<style>
+    @font-face {
+		font-family: 'tommy1'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/MADE_TOMMY/MADE TOMMY Thin_PERSONAL USE.otf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'tommy2'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/MADE_TOMMY/MADE TOMMY Light_PERSONAL USE.otf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'tommy3'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/MADE_TOMMY/MADE TOMMY Regular_PERSONAL USE.otf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'tommy4'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/MADE_TOMMY/MADE TOMMY Medium_PERSONAL USE.otf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'tommy5'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/MADE_TOMMY/MADE TOMMY Black_PERSONAL USE.otf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'tommy6'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/MADE_TOMMY/MADE TOMMY Bold_PERSONAL USE.otf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'tommy7'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/MADE_TOMMY/MADE TOMMY ExtraBold_PERSONAL USE.otf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'gotan1'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/Gotham_HTF/GothamHTF-Ultra.ttf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'gotan2'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/Gotham_HTF/GothamHTF-Book.ttf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'gotan3'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/Gotham_HTF/GothamHTF-Medium.ttf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'gotan4'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/Gotham_HTF/GothamHTF-Bold.ttf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+		@font-face {
+		font-family: 'gotan5'; /* Nombre personalizado para la fuente */
+		src: url("{{asset('font/Gotham_HTF/GothamHTF-Black.ttf')}}") format('truetype'); /* Ruta a la fuente en tu proyecto */
+		}
+
+</style>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -52,7 +114,7 @@
     @endif
 
     <div id="app">
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>
@@ -64,4 +126,5 @@
     @yield('scripts')
     @yield('jqueryExtra')
 </body>
+
 </html>

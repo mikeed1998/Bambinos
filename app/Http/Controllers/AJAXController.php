@@ -12,6 +12,7 @@ use ProductoGaleria;
 
 class AJAXController extends Controller
 {
+
     public function editarajax(Request $request)
     {
         $modelName = $request->input('modelo');

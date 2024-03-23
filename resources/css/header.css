@@ -11,7 +11,7 @@
 }
 
 :root {
-    --morado-fondo: #3D375C;
+    --morado-fondo: red;
     --morado-link_hover: #7228A5;
     --blanco: #FFFFFF;
     --negro: #000000;

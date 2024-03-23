@@ -11,7 +11,7 @@
 }
 
 :root {
-    --morado-fondo: #3D375C;
+    --morado-fondo: #353352;
     --morado-link_hover: #7228A5;
     --blanco: #FFFFFF;
     --negro: #000000;
@@ -67,6 +67,8 @@ img.vertical-shake {
 .link-menu_modal:hover {
     color: var(--morado-link_hover);
     text-decoration: underline;
+    padding-left: 1rem;
+
 }
 
 .link-menu_modal--2:hover {
@@ -117,17 +119,12 @@ img.vertical-shake {
     }
 
     .img-carrito {
-        width: 2.7rem;
-        height: 2.3rem;
+        height: 2rem;
     }
 
     .img-carrito_modal {
         width: 2.5rem;
         height: 2.2rem;
-    }
-
-    .contenedor-carrito {
-        margin-top: 2.5rem;
     }
 
     .contenedor-carrito_modal {
@@ -174,6 +171,7 @@ img.vertical-shake {
         font-size: 6.5rem;
         font-weight: 700;
         line-height: 0.8;
+        transition: ease 0.1s;
     }
 
     .texto-modal {
@@ -192,7 +190,7 @@ img.vertical-shake {
     }
 
     .btn-cerrar_modal {
-        font-size: 4rem;
+        font-size: 3rem;
         color: var(--blanco);
     }
 }

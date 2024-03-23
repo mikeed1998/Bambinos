@@ -6,166 +6,100 @@
     src: url('vendor/fonts/Mairy_Bold.otf') format('opentype');
 }
 
-header > div {
-
+a {
+  text-decoration: none; /* Elimina el subrayado */
+  color: inherit; /* Hereda el color del texto padre */
+  /* Agrega cualquier otra propiedad que desees modificar */
 }
 
-/* header {
-    position: sticky;
-    top: 0;
-    z-index: 99;
-} */
+.vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            white-space: nowrap;
+            transform: rotate(180deg);
+            position: fixed; 
+            height: 12rem; 
+            width: 3rem; 
+            background-color: #6962B1; 
+            right: 0; 
+            top: 10rem;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+
+        }
+
+        .texto-menu{
+            color: #ffffff;
+            font-family: tommy3;
+            font-weight: bold;
+        }
+
+        .menu-ham{
+            font-size: 2rem;
+            transition: ease 0.5s;
+        }
+
+        .menu-ham:hover{
+            transform: rotate(180deg);
+            font-size: 2.5rem;
+        }
+
+        .cerrar-sesion{
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.2rem;
+            font-family: gotan4;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cerrar-sesion-out{
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.2rem;
+            font-family: gotan4;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cerrar-sesion-out:hover{
+            color: #4ba361;
+            text-decoration: underline;
+        }
+
 
 </style>
 
-{{-- <header class="container-fluid">
-    <div class="row">
-        <div class="col-9 mx-auto">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-                <div class="container">
-                    @auth
-                        @if(Auth::user()->role_as === 2 || Auth::user()->role_as === 0)
-                            <a class="navbar-brand" href="{{ url('/') }}">
-                                <img src="{{ asset('img/header/logo.png') }}" alt="img-logo" class="img-fluid w-25">
-                            </a>
-                        @endif
-                    @else
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            <img src="{{ asset('img/header/logo.png') }}" alt="img-logo" class="img-fluid w-25">
-                        </a>
-                    @endauth
-
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ Auth::user()->name }}
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('user.home') }}">
-                                                My Profile
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </li>
-                            @endguest
-                        </ul>
-                    </div>
-                    @auth
-                        @if(Auth::user()->role_as === 0)
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-12 col-12">
-                                    <div class="dropdown">
-                                        <a href="{{ route('cart.index') }}" class="btn btn-primary" data-toggle="dropdown">
-                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
-                                            <span class="badge badge-pill badge-danger">
-                                                {{ array_sum(array_column((array) session('cart'), 'quantity')) }}
-                                            </span>
-                                        </a>
-
-
-                                        <div class="dropdown-menu">
-                                            <div class="row total-header-section">
-                                                @php $total = 0 @endphp
-                                                @foreach((array) session('cart') as $id => $details)
-                                                    @php $total += $details['price'] * $details['quantity'] @endphp
-                                                @endforeach
-                                                <div class="col-lg-12 col-sm-12 col-12 total-section text-right">
-                                                    <p>Total: <span class="text-info">$ {{ $total }}</span></p>
-                                                </div>
-                                            </div>
-                                            @if(session('cart'))
-                                                @foreach(session('cart') as $id => $details)
-                                                    <div class="row cart-detail">
-                                                        <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                                            <img src="{{ asset('img') }}/{{ $details['photo'] }}" />
-                                                        </div>
-                                                        <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                                            <p>{{ $details['product_name'] }}</p>
-                                                            <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            @endif
-                                            <div class="row">
-                                                <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                                                    <a href="{{ route('cart.index') }}" class="btn btn-primary btn-block">View all</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endauth
-
-                </div>
-            </nav>
-        </div>
-    </div>
-</header> --}}
-
-
-<header class="container-fluid" style="position: sticky; top: 0; z-index: 9999; font-family: 'Mairy Bold';">
+<header class="container-fluid" style="position: ; top: 0; z-index: 9999; font-family: 'Mairy Bold';">
     <div class="row" style="z-index: 9999;">
         <div class="cola col position-relative">
-            <div class="row">
-                <div class="cola col py-2 mx-auto borde-col text-md-end text-center cont-iconos">
+            <div class="row" style="margin-top: 2rem; height: 2rem">
+                <div class="cola col mx-auto borde-col text-md-end text-center cont-iconos">
                     <a href="#/">
-                        <i class="borde-icon bi bi-whatsapp text-white icono px-1"></i>
+                        <img class="px-2" src="{{asset('img/design/Inicio/whats.png')}}" alt="" style="height: 80%">
                     </a>
                     <a href="#/">
-                        <i class="borde-icon bi bi-instagram text-white icono px-1"></i>
+                        <img class="px-2" src="{{asset('img/design/Inicio/insta.png')}}" alt="" style="height: 80%">
                     </a>
                     <a href="#/">
-                        <i class="borde-icon bi bi-facebook text-white icono px-1"></i>
+                        <img class="px-2" src="{{asset('img/design/Inicio/face.png')}}" alt="" style="height: 80%">
                     </a>
                     <a href="#/">
-                        <i class="borde-icon bi bi-tiktok text-white icono px-1"></i>
+                        <img class="px-2" src="{{asset('img/design/Inicio/tiktok.png')}}" alt="" style="height: 80%">
                     </a>
                     <a href="#/">
-                        <i class="borde-icon bi bi-youtube text-white icono px-1"></i>
+                        <img class="px-2" src="{{asset('img/design/Inicio/youtube.png')}}" alt="" style="height: 80%">
                     </a>
                 </div>
             </div>
             <div class="row">
                 <div class="cola col-xxl-9 col-xl-10 col-lg-10 col-md-10 col-sm-12 col-12 py-1 borde-col mx-auto">
-                    <div class="row">
+                    <div class="row justify-content-center align-items-center" style="margin-bottom: 3rem">
                         <div class="cola col-xxl-8 col-xl-8 col-lg-9 col-md-9 col-sm-9 col-12 borde-col">
                             <div class="row">
                                 <div class="cola col-xxl-4 col-xl-5 col-lg-6 col-md-8 col-sm-12 col-12 borde-col px-0">
                                     <a href="{{ url('/') }}">
-                                        <img src="{{ asset('img/header/logo.png') }}" alt="logo" class="img-fluid">
+                                        <img src="{{ asset('img/design/Inicio/logo.png') }}" alt="logo" class="img-fluid" style=" height: 4rem;">
                                     </a>
                                 </div>
                             </div>
@@ -173,18 +107,18 @@ header > div {
                         <div class="cola col-lg-3 col-md-3 col-sm-3 col-8 mx-auto header-sm">
                             <div class="cola col-lg-6 col-md-8 col-sm-8 col-4 mx-auto borde-col cont-menu">
                                 <button type="button" class="link-menu" onclick="activarModalSM()">
-                                    <img src="{{ asset('img/header/hamburgerw.png') }}" alt="menu" class="img-fluid img-menu">
+                                    <img src="{{ asset('img/header/hamburgerw.png') }}" alt="menu" class="img-fluid img-menu" style="height: 1rem">
                                 </button>
                             </div>
                         </div>
                         <div class="cola col-xxl-2 col-xl-2 header-lg borde-col fw-bolder">
-                            <div class="cola col-11 text-center borde-col position-relative text-white cont-sesion">
+                            <div class="cola col-11 text-center borde-col position-relative text-white ">
 
                                 @if (Auth::check())
                                     @if (Auth::user()->role_as == 0) {{-- Middleware para redirigir al panel de cliente --}}
                                         <div class="row">
                                             <div class="col">
-                                                <a href="{{ route('user.home') }}" class="link-sesion">
+                                                <a href="{{ route('user.home') }}" class="link-sesion cerrar-sesion">
                                                     Mi cuenta
                                                 </a>
                                             </div>
@@ -192,7 +126,7 @@ header > div {
                                     @elseif (Auth::user()->role_as == 2) {{-- Middleware para redirigir al panel de vendedor --}}
                                         <div class="row">
                                             <div class="col">
-                                                <a href="{{ route('vendedor.home') }}" class="link-sesion">
+                                                <a href="{{ route('vendedor.home') }}" class="link-sesion cerrar-sesion">
                                                     Mi cuenta
                                                 </a>
                                             </div>
@@ -208,14 +142,14 @@ header > div {
                             </div>
                         </div>
                         <div class="cola col-xxl-1 col-xl-1 header-lg borde-col">
-                            <div class="row">
-                                <div class="cola col-xxl-8 col-xl-9 position-relative contenedor-carrito">
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="cola col-xxl-8 col-xl-9 position-relative contenedor-carrito d-flex justify-content-center align-items-center">
                                     @if (Auth::check())
                                         @if (Auth::user()->role_as == 0)
                                         <a href="{{ route('cart.index') }}" class="link-carrito">
                                             <img src="{{ asset('img/header/carrito.png') }}" alt="" class="img-fluid borde-icon img-carrito vertical-shake">
                                         </a>
-                                        <div class="cola col-6 text-center position-absolute top-0 start-100 translate-middle-y cont-carrito">
+                                        <div class="cola col-6 text-center position-absolute top-0 translate-middle-y cont-carrito" style="left: 80%">
                                             <span class="badge badge-pill badge-danger fs-5">
                                                 {{ array_sum(array_column((array) session('cart'), 'quantity')) }}
                                             </span>
@@ -230,7 +164,9 @@ header > div {
                             <div class="row">
                                 <div class="cola col-12 mx-auto borde-col cont-menu">
                                     <button type="button" class="link-menu" onclick="activarModalLG()">
-                                        <img src="{{ asset('img/header/hamburgerw.png') }}" alt="menu" class="img-fluid img-menu">
+                                        <div class="col-12 d-flex justify-content-center align-items-center" style="height: 100%; color:#ffffff;" >
+                                            <i class="fa-solid fa-bars menu-ham" style=""></i>
+                                        </div>
                                     </button>
                                 </div>
                             </div>
@@ -243,12 +179,12 @@ header > div {
         </div>
     </div>
     <!-- Modal lg -->
-    <div class="col-6 menu-modal_lg position-absolute top-0 end-0" style="z-index: 99999; background-color: var(--morado-fondo); pointer-events: auto; overflow-y: auto; height: 100vh;">
-        <div class="col-11 mb-5 mx-auto">
-            <div class="row mt-5">
+    <div class="col-6 menu-modal_lg position-absolute top-0 end-0" style="z-index: 99999; background-color: var(--morado-fondo); pointer-events: auto; overflow-y: auto; height: 61.5rem; -webkit-box-shadow: -8px 0px 9px 0px rgba(0, 0, 0, 0.575); -moz-box-shadow: -8px 0px 9px 0px rgba(0,0,0,0.575);box-shadow: -8px 0px 9px 0px rgba(0,0,0,0.575);">
+        <div class="col-12" style="background-size: contain;background-repeat: no-repeat; background-position: center; background-image: url({{asset('img/design/Inicio/patron_menu.png')}}); height: 100%;">
+            <div class="row s">
                 <div class="col-11 mx-auto text-end">
-                    <p class="p-0 m-0" style="line-height: 1;" onclick="cerrarModalLG()">
-                        <i class="bi bi-x-lg p-0 btn-cerrar_modal" style="line-height: 1;" ></i>
+                    <p class="pt-5 m-0" style="line-height: 1;" onclick="cerrarModalLG()">
+                        <i class="bi bi-x-lg p-0 btn-cerrar_modal" style="" ></i>
                     </p>
                 </div>
             </div>
@@ -257,12 +193,12 @@ header > div {
                     <div class="row">
                         <div class="col-xxl-9 col-xl-11 mx-auto">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-4 d-flex justify-content-center align-items-center">
                                     @if (Auth::check())
                                         <div class="row">
                                             <div class="col">
-                                                <div class="col-12">
-                                                    <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <div class="col-12 d-flex justify-content-center align-items-center text-center">
+                                                    <a class="cerrar-sesion-out d-flex justify-content-center align-items-center" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                         {{ __('Cerrar sesión') }}
                                                     </a>
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -273,21 +209,22 @@ header > div {
                                         </div>
                                     @endif
                                 </div>
+                                
                                 <div class="cola col-xxl-5 col-xl-4 header-lg borde-col fw-bolder">
                                     <div class="cola col-11 text-center borde-col position-relative text-white cont-sesion_modal">
                                         @if (Auth::check())
                                             @if (Auth::user()->role_as == 0)
                                                 <div class="row">
-                                                    <div class="col">
-                                                        <a href="{{ route('user.home') }}" class="link-sesion">
+                                                    <div class="col pb-3">
+                                                        <a href="{{ route('user.home') }}" class="link-sesion cerrar-sesion">
                                                             Mi cuenta
                                                         </a>
                                                     </div>
                                                 </div>
                                             @elseif (Auth::user()->role_as == 2)
                                                 <div class="row">
-                                                    <div class="col">
-                                                        <a href="{{ route('vendedor.home') }}" class="link-sesion">
+                                                    <div class="col pb-3">
+                                                        <a href="{{ route('vendedor.home') }}" class="link-sesion cerrar-sesion">
                                                             Mi cuenta
                                                         </a>
                                                     </div>
@@ -307,7 +244,7 @@ header > div {
                                             <a href="{{ route('cart.index') }}" class="link-carrito">
                                                 <img src="{{ asset('img/header/carrito.png') }}" alt="" class="img-fluid borde-icon img-carrito_modal vertical-shake">
                                             </a>
-                                            <div class="cola col-6 text-center position-absolute top-0 start-100 translate-middle cont-carrito">
+                                            <div class="cola col-6 text-center position-absolute top-0 translate-middle cont-carrito" style="left: 70%;">
                                                 <span class="badge badge-pill badge-danger fs-5">
                                                     {{ array_sum(array_column((array) session('cart'), 'quantity')) }}
                                                 </span>
@@ -320,12 +257,12 @@ header > div {
                                 <div class="col mt-5">
                                     <div class="row">
                                         <div class="col">
-                                            <a href="#/" class="link-menu_modal">Home</a>
+                                            <a href="{{route('front.home')}}" class="link-menu_modal">Home</a>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <a href="#/" class="link-menu_modal">Catálogo</a>
+                                            <a href="{{route('catalogo')}}" class="link-menu_modal">Catálogo</a>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -335,12 +272,12 @@ header > div {
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <a href="#/" class="link-menu_modal">El negocio</a>
+                                            <a href="{{route('front.aboutus')}}" class="link-menu_modal">El negocio</a>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <a href="#/" class="link-menu_modal">Contacto</a>
+                                            <a href="{{route('front.contact')}}" class="link-menu_modal">Contacto</a>
                                         </div>
                                     </div>
                                 </div>
@@ -580,9 +517,14 @@ header > div {
             </div>
         </div>
     </div>
+
 </header>
 
-
+<a href="{{route('catalogo')}}" style="z-index: 9999; position: absolute">
+    <div class="vertical-text d-flex justify-content-center align-items-center " style="">
+    <p class="texto-menu">catálogo online</p>
+    </div>
+    </a>
 
 
 
